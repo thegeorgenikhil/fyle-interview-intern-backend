@@ -69,13 +69,13 @@ def upgrade():
     assignment_3 = Assignment(student_id=student_2.id, content='ESSAY T2')
     assignment_4 = Assignment(student_id=student_2.id, content='THESIS T2')
 
-    assignment_5 = Assignment(student_id=student_1.id, content='SOLUTION T1')
+    # assignment_5 = Assignment(student_id=student_1.id, content='SOLUTION T1')
 
     db.session.add(assignment_1)
     db.session.add(assignment_2)
     db.session.add(assignment_3)
     db.session.add(assignment_4)
-    db.session.add(assignment_5)
+    # db.session.add(assignment_5)
 
     db.session.flush()
 
