@@ -51,15 +51,16 @@ class AssignmentGradeSchema(Schema):
         # pylint: disable=unused-argument,no-self-use
         return GeneralObject(**data_dict)
 
+
 class TeacherSchema(SQLAlchemyAutoSchema):
     class Meta:
         model = Teacher
         unknown = EXCLUDE
-        
+
     id = auto_field(required=False, allow_none=True)
     created_at = auto_field(dump_only=True)
     updated_at = auto_field(dump_only=True)
-    
+
     @post_load
     def initiate_class(self, data_dict, many, partial):
         # pylint: disable=unused-argument,no-self-use

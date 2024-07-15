@@ -7,26 +7,42 @@ from core.models.teachers import Teacher
 from sqlalchemy import or_
 
 from .schema import AssignmentSchema, AssignmentGradeSchema, TeacherSchema
-principal_assignment_resources = Blueprint('principal_assignment_resources', __name__)
 
-@principal_assignment_resources.route('/assignments', methods=['GET'], strict_slashes=False)
+principal_assignment_resources = Blueprint("principal_assignment_resources", __name__)
+
+
+@principal_assignment_resources.route(
+    "/assignments", methods=["GET"], strict_slashes=False
+)
 def list_assignments():
     """Returns list of assignments"""
-    submitted_and_graded_assignments = Assignment.filter(or_(Assignment.state == AssignmentStateEnum.SUBMITTED, Assignment.state == AssignmentStateEnum.GRADED))
-    submitted_and_graded_assignments_dump = AssignmentSchema().dump(submitted_and_graded_assignments, many=True)
-    
+    submitted_and_graded_assignments = Assignment.filter(
+        or_(
+            Assignment.state == AssignmentStateEnum.SUBMITTED,
+            Assignment.state == AssignmentStateEnum.GRADED,
+        )
+    )
+    submitted_and_graded_assignments_dump = AssignmentSchema().dump(
+        submitted_and_graded_assignments, many=True
+    )
+
     return APIResponse.respond(data=submitted_and_graded_assignments_dump)
 
-@principal_assignment_resources.route('/teachers', methods=['GET'], strict_slashes=False)
+
+@principal_assignment_resources.route(
+    "/teachers", methods=["GET"], strict_slashes=False
+)
 def list_teachers():
     """Returns list of teachers"""
     teachers = Teacher.get_all_teachers()
     teachers_dump = TeacherSchema().dump(teachers, many=True)
-    
+
     return APIResponse.respond(data=teachers_dump)
 
 
-@principal_assignment_resources.route('/assignments/grade', methods=['POST'], strict_slashes=False)
+@principal_assignment_resources.route(
+    "/assignments/grade", methods=["POST"], strict_slashes=False
+)
 @decorators.accept_payload
 @decorators.authenticate_principal
 def grade_assignments(p, incoming_payload):
@@ -36,7 +52,7 @@ def grade_assignments(p, incoming_payload):
     graded_assignment = Assignment.mark_grade(
         _id=grade_assignment_payload.id,
         grade=grade_assignment_payload.grade,
-        auth_principal=p
+        auth_principal=p,
     )
     db.session.commit()
     graded_assignment_dump = AssignmentSchema().dump(graded_assignment)
