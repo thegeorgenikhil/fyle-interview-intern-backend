@@ -2,15 +2,15 @@
 
 # Completed Tasks
 
-[x] [PRINCIPAL]List submitted and graded assignments API
-[x] [PRINCIPAL]List all teachers API
-[x] [PRINCIPAL]Grade an assignment/Re-grade an assignment API
-[x] [TEACHER]Wrote tests for Grading API
-[x] Fixed all bugs in the code and made sure all tests pass
-[x] Test Coverage is at 94%(covering all important parts of the code)
-[x] Wrote SQL queries for the test cases provided
-[x] Dockerized the application(Docker + Docker Compose)
-[x] Added documentation for building and running the application with Docker
+- [x] [PRINCIPAL]List submitted and graded assignments API
+- [x] [PRINCIPAL]List all teachers API
+- [x] [PRINCIPAL]Grade an assignment/Re-grade an assignment API
+- [x] [TEACHER]Wrote tests for Grading API
+- [x] Fixed all bugs in the code and made sure all tests pass
+- [x] Test Coverage is at 94%(covering all important parts of the code)
+- [x] Wrote SQL queries for the test cases provided
+- [x] Dockerized the application(Docker + Docker Compose)
+- [x] Added documentation for building and running the application with Docker
 
 ## Installation
 
