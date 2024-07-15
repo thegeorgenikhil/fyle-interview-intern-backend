@@ -4,6 +4,7 @@ from core.apis import decorators
 from core.apis.responses import APIResponse
 from core.models.assignments import Assignment, AssignmentStateEnum
 from core.models.teachers import Teacher
+from sqlalchemy import or_
 
 from .schema import AssignmentSchema, AssignmentGradeSchema, TeacherSchema
 principal_assignment_resources = Blueprint('principal_assignment_resources', __name__)
@@ -11,7 +12,7 @@ principal_assignment_resources = Blueprint('principal_assignment_resources', __n
 @principal_assignment_resources.route('/assignments', methods=['GET'], strict_slashes=False)
 def list_assignments():
     """Returns list of assignments"""
-    submitted_and_graded_assignments = Assignment.filter(Assignment.grade in [AssignmentStateEnum.GRADED, AssignmentStateEnum.SUBMITTED])
+    submitted_and_graded_assignments = Assignment.filter(or_(Assignment.state == AssignmentStateEnum.SUBMITTED, Assignment.state == AssignmentStateEnum.GRADED))
     submitted_and_graded_assignments_dump = AssignmentSchema().dump(submitted_and_graded_assignments, many=True)
     
     return APIResponse.respond(data=submitted_and_graded_assignments_dump)
