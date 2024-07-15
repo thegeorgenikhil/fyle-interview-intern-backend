@@ -1,27 +1,16 @@
 # Fyle Backend Challenge
 
-## Who is this for?
+# Completed Tasks
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. You should be able to commit to at least 6 months of dedicated time for internship.
-
-## Why work at Fyle?
-
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
-
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
-
-
-## Challenge outline
-
-**You are allowed to use any online/AI tool such as ChatGPT, Gemini, etc. to complete the challenge. However, we expect you to fully understand the code and logic involved.**
-
-This challenge involves writing a backend service for a classroom. The challenge is described in detail [here](./Application.md)
-
-
-## What happens next?
-
-You will hear back within 48 hours from us via email. 
-
+[x] [PRINCIPAL]List submitted and graded assignments API
+[x] [PRINCIPAL]List all teachers API
+[x] [PRINCIPAL]Grade an assignment/Re-grade an assignment API
+[x] [TEACHER]Wrote tests for Grading API
+[x] Fixed all bugs in the code and made sure all tests pass
+[x] Test Coverage is at 94%(covering all important parts of the code)
+[x] Wrote SQL queries for the test cases provided
+[x] Dockerized the application(Docker + Docker Compose)
+[x] Added documentation for building and running the application with Docker
 
 ## Installation
 
@@ -47,6 +36,24 @@ flask db upgrade -d core/migrations/
 ```
 bash run.sh
 ```
+
+This will start app on localhost:7755
+
+### Start Server using Docker
+
+```
+# Build the docker image
+docker build -t flask-gunicorn-app .
+
+# Run the docker container
+docker run -d -p 7755:7755 flask-gunicorn-app
+
+# Optionally, you can use docker compose
+docker compose up
+```
+
+This will start app on localhost:7755
+
 ### Run Tests
 
 ```
